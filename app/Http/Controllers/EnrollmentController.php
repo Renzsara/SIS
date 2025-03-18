@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Enrollment;
 use App\Models\Student;
 use App\Models\Subject;
+use App\Models\Grade;
 use Illuminate\Http\Request;
 
 class EnrollmentController extends Controller
@@ -39,6 +40,18 @@ class EnrollmentController extends Controller
             }
 
             Enrollment::create($request->all());
+
+            // Automatically create a grade entry for the new enrollment
+            Grade::create([
+                'student_id' => $request->student_id,
+                'subject_id' => $request->subject_id,
+                'midterm_grade' => null,
+                'final_grade' => null,
+                'average_grade' => null,
+                'status' => 'Regular',
+                'remarks' => null,
+            ]);
+
             return redirect()->route('admin.enrollments')
                 ->with('success', 'Enrollment created successfully');
         } catch (\Exception $e) {

@@ -26,7 +26,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('student.dashboard') }}">
                 <div class="sidebar-brand-icon">
-                    <i class="fas fa-user-graduate"></i>
+                    <i class="fas fa-university"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">Student Portal</div>
             </a>
@@ -39,54 +39,6 @@
                 <a class="nav-link" href="{{ route('student.dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
-                </a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Academic
-            </div>
-
-            <!-- Nav Item - Grades -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-chart-line"></i>
-                    <span>Grades</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Schedule -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-calendar"></i>
-                    <span>Schedule</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Subjects -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-book"></i>
-                    <span>Subjects</span>
-                </a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Personal
-            </div>
-
-            <!-- Nav Item - Profile -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('profile.edit') }}">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Profile</span>
                 </a>
             </li>
 
@@ -111,17 +63,9 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Student Info -->
-                    <div class="d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0">
-                        <span class="text-gray-600">
-                            Student ID: {{ Auth::user()->student->student_id }} | 
-                            Course: {{ Auth::user()->student->course }} |
-                            Year: {{ Auth::user()->student->year }}-{{ Auth::user()->student->section }}
-                        </span>
-                    </div>
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <div class="topbar-divider d-none d-sm-block"></div>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -132,11 +76,6 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <div class="dropdown-divider"></div>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit" class="dropdown-item">
@@ -151,10 +90,8 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
-                    @yield('content')
-                </div>
-                <!-- /.container-fluid -->
+                @yield('content')
+                <!-- End Page Content -->
             </div>
             <!-- End of Main Content -->
 
@@ -162,7 +99,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Student Information System 2024</span>
+                        <span>Copyright © Student Information System {{ date('Y') }}</span>
                     </div>
                 </div>
             </footer>
@@ -171,11 +108,6 @@
         <!-- End of Content Wrapper -->
     </div>
     <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>

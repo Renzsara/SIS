@@ -7,6 +7,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\GradeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,7 +45,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/enrollments', [EnrollmentController::class, 'store'])->name('admin.enrollments.store');
         Route::delete('/enrollments/{enrollment}', [EnrollmentController::class, 'destroy'])->name('admin.enrollments.destroy');
         Route::put('/enrollments/{enrollment}', [EnrollmentController::class, 'update'])->name('admin.enrollments.update');
-        Route::get('/grades', [AdminController::class, 'grades'])->name('admin.grades');
+        Route::get('/grades', [GradeController::class, 'index'])->name('admin.grades');
+        Route::post('/grades', [GradeController::class, 'store'])->name('admin.grades.store');
+        Route::put('/grades/{grade}', [GradeController::class, 'update'])->name('admin.grades.update');
+        Route::delete('/grades/{grade}', [GradeController::class, 'destroy'])->name('admin.grades.destroy');
     });
 });
 

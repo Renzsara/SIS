@@ -22,4 +22,10 @@ class Enrollment extends Model
     {
         return $this->belongsTo(Subject::class);
     }
+
+    public function grade()
+    {
+        return $this->hasOne(Grade::class, 'subject_id', 'subject_id')
+                    ->where('student_id', $this->student_id);
+    }
 }

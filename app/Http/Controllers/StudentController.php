@@ -9,13 +9,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
+use App\Models\Enrollment;
 
 class StudentController extends Controller
 {
     public function dashboard()
     {
-        $student = Auth::user()->student;
-        return view('student.dashboard', compact('student'));
+        $student = auth()->user()->student;
+        $enrollments = Enrollment::with(['subject', 'grade'])
+            ->where('student_id', $student->id)
+            ->get();
+
+        return view('student.dashboard', compact('enrollments'));
     }
 
     public function index()
